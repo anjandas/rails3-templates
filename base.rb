@@ -41,6 +41,10 @@ gem_group :development, :test do
   gem "webrat"
 end
 
+gem_group :test do
+  gem "database_cleaner"
+end
+
 gem "simple_form"
 
 if yes?('Do you want to deploy to Heroku? (YES/NO)')
@@ -54,3 +58,5 @@ end
 run "bundle install --without production"
 generate("rspec:install")
 generate("cucumber:install")
+run "rake db:migrate"
+run "rake db:test:prepare"
